@@ -6,7 +6,6 @@ int main() {
     float taxrate, taxrateover;
     float incomelimit;
     float totalincome = 0;
-    float taxable;
 
     printf("Enter tax rate: ");
     scanf("%f", &taxrate);
