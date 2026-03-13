@@ -290,11 +290,11 @@ long dates(const char *date_str) { //Converts a  DD-MM-YYYY string to a "day ind
 
 void add_sorted_by_time(Car **head, Car *new_node) {
     // Counting new cars sell time
-    long new_diff = date_to_index(new_node->sellingDate) - date_to_index(new_node->purchaseDate);
+    long new_diff = dates(new_node->sellingDate) - dates(new_node->purchaseDate);
 
     Car **ppn = head; //Moving the doublepointer back to head
     while (*ppn != NULL) {
-        long current_diff = date_to_index((*ppn)->sellingDate) - date_to_index((*ppn)->purchaseDate);
+        long current_diff = dates((*ppn)->sellingDate) - dates((*ppn)->purchaseDate);
 
         // Descending sort
         if (new_diff > current_diff) {
@@ -317,7 +317,7 @@ void sellTimeReport(const char *filename) { //Report from selltime
     char line[linesize];
     int total_profit = 0;
 
-    while (fgets(line, sizeof(line), file)) {
+    while (fgets(line, sizeof(line), report)) {
         Car temp_data;
         if (parse_car_line(line, &temp_data)) {
             Car *new_car = malloc(sizeof(Car));
@@ -347,7 +347,7 @@ void sellTimeReport(const char *filename) { //Report from selltime
     Car *current = list_head;
     while (current != NULL) {
         //Counting sell time for print
-        long days = date_to_index(current->sellingDate) - date_to_index(current->purchaseDate);
+        long days = dates(current->sellingDate) - dates(current->purchaseDate);
         int profit = current->sellingPrice - current->purchasePrice;
 
         printf("%-15s %-15s %-10ld days    %-10d EUR\n",
