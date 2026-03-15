@@ -44,7 +44,7 @@ int main(void) {
             printf("Generated password: %s\n", password);
         }
         else {
-            printf("Error: Generated password could not fit in the buffer.\n");
+            printf("Error! Generated password could not fit in the buffer.\n");
         }
     }
 }
